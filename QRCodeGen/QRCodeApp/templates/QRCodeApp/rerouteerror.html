@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Помилка
+{% endblock %}
+
+{% block links %} 
+    <link rel="stylesheet" href="{% static 'QRCodeApp/css/rerouteerror.css' %}">
+{% endblock %}
+
+{% block content %}
+    <p>Помилка: цей QR-код не дійсний!</p>
+{% endblock %}

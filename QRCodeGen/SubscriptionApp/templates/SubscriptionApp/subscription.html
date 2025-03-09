@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Підписки
+{% endblock %}
+
+{% block links %}
+    <script defer src = "{% static 'SubscriptionApp/js/script.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'SubscriptionApp/css/subscription3.css' %}">
+{% endblock %}
+
+{% block content %} 
+
+    <div class="content">
+        <div class="plan basic">
+            <img src="{% static 'SubscriptionApp/img/basic.png' %}">
+            <h1>Базовий</h1>
+            <div class="privellege-list">
+                <ul>
+                    <li>Один вільний QR-Код</li>
+                    <li>Тривалість 1 місяць</li>
+                </ul>
+            </div>
+            {% if sub != "free" %}
+                <button class = "button-free">Безкоштовного</button>
+            {% else %}
+                <button class = "button-free disabled" disabled>Поточний план</button>
+            {% endif %}
+        </div>
+        <div class = "form-free hide form-div">
+            <form method="post">
+                {% csrf_token %}
+                <h1>Оформлення безкоштовного плану</h1>
+                <p>Ви впевнені, що хочете відмовитись від своєї підписки, та повернутись до безкоштовного плану.</p>
+                <button type="submit">Підтвердити</button>
+                <input type="hidden" name="sub" value="free">
+            </form>
+        </div>
+
+        <div class="plan standart">   
+            <img src="{% static 'SubscriptionApp/img/standart.png' %}">
+            <h1>Стандартний</h1>
+            <div class="privellege-list">
+                <ul>
+                    <li>10 вільних QR-Кодів</li>
+                    <li>Кастомізовані QR-Коди</li>
+                </ul>
+            </div>
+            {% if sub != "standart" %}
+                <button class = "button-standart">149 грн на міс.</button>
+            {% else %}
+                <button class = "button-standart disabled" disabled>Поточний план</button>
+            {% endif %}
+        </div>
+        <div class = "form-standart hide form-div">
+            <form method="post">
+                {% csrf_token %}
+                <h1>Оформлення підписки Стандарт</h1>
+                <p>Номер картки:</p>
+                <input type="text" placeholder="**** **** **** ****">
+                <p>Дійсна до:</p>
+                <input type="text" placeholder="ММ/РР">
+                <p>Пін-код:</p>
+                <input type="text" placeholder="****">
+                <button type="submit">Підтвердити</button>
+                <input type="hidden" name="sub" value="standart">
+            </form>
+        </div>
+
+
+
+        <div class="plan pro">
+            <img src="{% static 'SubscriptionApp/img/pro.png' %}">
+            <h1>Професійний</h1>
+            <div class="privellege-list">
+                <ul>
+                    <li>100 вільних QR-Кодів</li>
+                    <li>Кастомізовані QR-Коди</li>
+                </ul>
+            </div>
+            {% if sub != "pro" %}
+                <button class = "button-pro">399 грн на міс.</button>
+            {% else %}
+                <button class = "button-pro disabled" disabled>Поточний план</button>
+            {% endif %}
+        </div>
+        <div class = "form-pro hide form-div">
+            <form method="post">
+                {% csrf_token %}
+                <h1>Оформлення підписки Про</h1>
+                <p>Номер картки:</p>
+                <input type="text" placeholder="**** **** **** ****">
+                <p>Дійсна до:</p>
+                <input type="text" placeholder="ММ/РР">
+                <p>Пін-код:</p>
+                <input type="text" placeholder="****">
+                <button type="submit">Підтвердити</button>
+                <input type="hidden" name="sub" value="pro">
+            </form>
+        </div>
+    </div>
+    
+{% endblock %} 

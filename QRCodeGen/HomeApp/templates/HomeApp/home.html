@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Головна
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'HomeApp/css/home2.css' %}">
+{% endblock %}
+
+{% block content %} 
+
+    <h1 class="title">QR Коди безкоштовно</h1> 
+
+    <div class="content">
+        <div class="main">
+            <div class="about">
+                <p>
+                    Наш веб-сайт для генерації QR-кодів дозволяє швидко та безкоштовно створювати коди для текстів, посилань, контактів та іншої інформації. Простий інтерфейс, швидка генерація та зручний експорт.
+                </p>
+            </div>
+            <div class="functional">
+                <div class="subscriptions">
+                    <div class="icons">
+                        <img src="{% static 'HomeApp/img/basic.png' %}">
+                        <img src="{% static 'HomeApp/img/standart.png' %}">
+                        <img src="{% static 'HomeApp/img/pro.png' %}">
+                    </div>
+                    <h3>Підписки</h3>
+                    <p>Збільшіть свої можливості</p>
+                    <button><a href="{% url 'subscription' %}">Переглянути</a></button>
+                </div>
+                <div class="buttons">
+                    <button><a href="{% url 'qrcodegen' %}">Згенерувати QR-Код</a></button>
+                    <button><a href="{% url 'qrcodeview' %}">Переглянути QR-Коди</a></button>
+                </div>
+            </div>
+        </div>
+        <div class="logo"><img src="{% static 'HomeApp/img/qrkent_logo.png' %}" style="height: 60%;"></div>
+    </div>
+    
+{% endblock %} 

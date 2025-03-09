@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Авторизація
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'UserApp/css/auth.css' %}">
+{% endblock %}
+
+{% block content %} 
+
+    <div class="frame">
+        <form method="post">
+            {% csrf_token %}
+            <h1>Авторизація</h1>
+            <input type="text" name="name" placeholder="Ім'я" required>
+            <input type="password" name="password" placeholder="Пароль" required>
+            <input type="password" name="password_repeat" placeholder="Повторення паролю" required>
+            <button type="submit">Підтвердити</button>
+        </form>
+    </div>
+    
+{% endblock %} 

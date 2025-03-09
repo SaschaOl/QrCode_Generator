@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Створити QR-Код
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'QRCodeApp/css/qrcodegen3.css' %}">
+{% endblock %}
+
+{% block content %} 
+    <h1 class="title">Згенерувати QR-Код</h1> 
+    <form method="post" enctype = 'multipart/form-data'>
+        <div class="content">
+            
+            <div class="frame">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Назва QR-Коду">
+                    <input type="text" name="url" placeholder="URL для QR-Коду">
+                    <textarea name="description" placeholder="Опис QR Коду"></textarea>
+                    <input type="file" name = "logo" placeholder = "Виберіть зображення">
+
+                    <input type="text" hidden name = "record" value = "{{ record }}">
+                    <button type="submit" name = "button" value = "gen">Згенерувати</button>
+                    <button type = "submit" name = "button" value = "save">Зберегти</button>
+            </div>
+            <div class="image">
+                {% if record != none %}
+                    <img src="{{ record.image.url }}">
+                {% else %}
+                    <img src="{% static 'QRCodeApp/img/qrcode_picture.png' %}">
+                {% endif %}
+                <!--   -->
+                <div class = "color-inputs">
+                    <div>
+                        <p>bg</p>
+                        <input type="color" name = "bg_color" value="#FFFFFF" placeholder = "" required>
+                    </div>
+
+                    <div>
+                        <p>fg</p>
+                        {% if sub == 'free' %}
+                            <input type="color" name = "qrcode_color" value="#000000" placeholder = "" required disabled> 
+                        {% else %}
+                            <input type="color" name = "qrcode_color" value="#000000" placeholder = "" required> 
+                        {% endif %}
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </form>
+{% endblock %} 

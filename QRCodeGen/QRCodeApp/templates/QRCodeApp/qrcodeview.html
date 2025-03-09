@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Перегляд QR-Код
+{% endblock %}
+
+{% block links %} 
+    <link rel="stylesheet" href="{% static 'QRCodeApp/css/qrcodeview4.css' %}">
+    <script src="{% static 'QRCodeApp/js/qrcodeview.js' %}" defer></script>
+{% endblock %}
+
+{% block content %} 
+
+    <h1 class="title">Ваші QR-Коди</h1>
+
+    <div class="boxes">
+        <div class="capacity">
+            <p>{{ qrc_count }}</p>
+            <p>/</p>
+            {% if sub == 'free' %}
+                <p>1</p>
+            {% elif sub == 'standart' %}
+                <p>10</p>
+            {% else %}
+                <p>100</p>
+            {% endif %}
+        </div>
+        {% for qrcode in qrcodes %}
+            <div class="box">
+                <div class = "img_qrcode">
+                    <!-- <img src="{% static 'QRCodeApp/img/new_qrcode.png' %}" alt=""> -->
+                    <img class="img-qrcode" src="{{ qrcode.image.url }}" alt="">
+                </div>
+                <div class="text">
+                    <h6>{{ qrcode.name }}</h6>
+                    <p>{{ qrcode.expire_date }}</p>
+                    <button id="{{ qrcode.id }}", class = "details">Детальніше</button>
+                </div>
+            </div>
+
+            <div class="popup hide", id="{{ qrcode.id }}">
+                <div class = "popup-frame">
+                    <div><img src="{{ qrcode.image.url }}" alt=""></div>
+                    <div>
+                        <h1 class = "qr-name">{{ qrcode.name }}</h1>
+                        <p>{{ qrcode.description }}</p>
+                        <p>{{ qrcode.url }}</p>
+                        <p>{{ qrcode.expire_date }}</p>
+                        <div>                     
+                            <form method = "post">
+                                {% csrf_token %}
+                                <input type = "hidden" name = "id" value="{{ qrcode.id }}">
+                                <button type = "submit" name="button" value = "save">Зберегти</button>
+                                <button type = "submit" name="button" value = "delete">Видалити</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+
+
+    
+{% endblock %} 

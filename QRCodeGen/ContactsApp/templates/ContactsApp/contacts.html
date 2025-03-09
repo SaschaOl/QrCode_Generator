@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Контакти
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'ContactsApp/css/contacts.css' %}">
+{% endblock %}
+
+{% block content %} 
+    
+    <h1 class="title">Зв’язок з нами</h1> 
+    
+    <div class="content">
+        <div class="frame">
+            <form method="post">
+                <h1>Е-Лист</h1>
+                <input type="text" name="name" placeholder="Ваше ім'я" required>
+                <input type="text" name="email" placeholder="Ваша Е-Пошта" required>
+                <textarea type="password" name="password_repeat" placeholder="Повідомлення" required></textarea>
+                <button type="submit">Наліслати</button>
+            </form>
+        </div>
+        <div class="contact-data">
+            <p>Адреса: Кіпр, м. Нікосія, вул. Ларіна 1-А</p>
+            <p>Телефон: +38099586532</p>
+            <p>Електрона пошта: support@qrkent.com</p>
+        </div>
+    </div>
+{% endblock %} 

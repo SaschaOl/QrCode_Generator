@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Реєстрація
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'UserApp/css/reg.css' %}">
+{% endblock %}
+
+{% block content %} 
+
+    <div class="frame">
+        <form class="reg_form" method="post">
+            {% csrf_token %}
+            <h1>Реєстрація</h1>
+            <input type="text" name="name" placeholder="Ім'я" required>
+            <input type="text" name="email" placeholder="Е-Пошта" required>
+            <input type="password" name="password" placeholder="Пароль" required>
+            <input type="password" name="password_repeat" placeholder="Повторення паролю" required>
+            <div class="auth">
+                <p>Вже маєте аккаунт?</p>
+                <a href="{% url 'auth' %}" >Авторизуватись</a>
+            </div>
+            <button type="submit">Підтвердити</button>
+        </form>
+    </div>
+    
+{% endblock %} 
